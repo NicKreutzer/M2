@@ -20,7 +20,8 @@ create.innerHTML= "Aplicacion creada por Nicolas";
 
 function ToDo (description) {
   // Tu código acá:
-  
+  this.description = description;
+  this.complete = false;
 }
 
 
@@ -29,6 +30,9 @@ function ToDo (description) {
 // Debe setear el atributo 'complete' del ToDo en true
 
 // Tu código acá:
+ToDo.prototype.completeToDo = function (){
+  this.complete = true;
+}
 
 
 // Agregar dos parámetros a la función 'buildToDo':
@@ -49,8 +53,22 @@ function ToDo (description) {
 //    8) Devolver la variable toDoShell
 
 
-function buildToDo(todo, index) {
+function buildToDo(ToDo, index) {
   // Tu código acá:
+  const ToDoShell = document.createElement('div');
+  ToDoShell.className = 'toDoShell';
+  
+  const ToDoText = document.createElement('span');
+  ToDoText.innerHTML = ToDo.description;
+  ToDoText.id = index;
+  
+  if (ToDo.complete) {
+    ToDoText.className = 'completeText';
+  }
+  
+  ToDoShell.appendChild(ToDoText);
+  
+  return ToDoShell;
 }
 
 // La función 'buildToDos' debe crear un array de objetos toDo y devolverlo
@@ -60,6 +78,9 @@ function buildToDo(todo, index) {
 
 function buildToDos(toDos) {
   // Tu código acá:
+  return toDos.map(function(toDo, index) {
+    return buildToDo(toDo, index);
+  });
 }
 
 // La función 'displayToDos' se va a encargar de que se vean los toDo's en pantalla
@@ -73,7 +94,15 @@ function buildToDos(toDos) {
 
 function displayToDos() {
   // Tu código acá:
+  const toDoContainer = document.getElementById('toDoContainer');
+  toDoContainer.innerHTML = "";
+  
+  const toDoElements = buildToDos(toDoItems);
+  toDoElements.forEach(function(toDoElement) {
+    toDoContainer.appendChild(toDoElement);
+  });
 }
+displayToDos();
 
 // La función 'addToDo' agregará un nuevo ToDo al array 'toDoItems'
 // [NOTA: Algunas cuestiones a tener en cuenta sobre el elemento 'input' de HTML (Ya que 'toDoInput' es un input)
@@ -86,7 +115,11 @@ function displayToDos() {
 
 function addToDo() {
   // Tu código acá:
- 
+  const toDoInput = document.getElementById('toDoInput').value;
+  const newToDo = new ToDo(toDoInput);
+  toDoItems.push(newToDo);
+  document.getElementById('toDoInput').value = '';
+  displayToDos();
 }
 
 // Agregar un 'Event Listener' para que cada vez que el botón 'AGREGAR' sea clickeado
