@@ -1,5 +1,5 @@
 //todo        FETCH sacado de GPT.
-//            Otra manera de hacerlo.
+//*           Otra manera de hacerlo.
 //!           Botones.
 //?           Profesor.
 
@@ -28,12 +28,12 @@ $('#boton').click(function(){
 //todo   });
 
 //! Buscar amigo.
-//  $('#search').click(function(){
-//      var id = $('#input').val()
-//      $.get(`http://localhost:5000/amigos/${id}`, response =>{
-//          $('#amigo').text(response.name)  //* getElementById('amigo').innerHTML = response.name
-//      })
-//  })
+//*  $('#search').click(function(){
+//*      var id = $('#input').val()
+//*      $.get(`http://localhost:5000/amigos/${id}`, response =>{
+//*          $('#amigo').text(response.name)  //* getElementById('amigo').innerHTML = response.name
+//*      })
+//*  })
 
 //todo document.getElementById('search').addEventListener('click', () => {
 //todo     const id = document.getElementById('input').value;
