@@ -1,3 +1,9 @@
+//todo        FETCH sacado de GPT.
+//            Otra manera de hacerlo.
+//!           Botones.
+//?           Profesor.
+
+
 //! Boton ver amigos.
 $('#boton').click(function(){
         var lista = $('#lista')
@@ -8,14 +14,36 @@ $('#boton').click(function(){
         }
     })
 });
+//todo document.getElementById('boton').addEventListener('click', () => {
+//todo     const lista = document.getElementById('lista');
+//todo     lista.innerHTML = '';
+//todo     fetch('http://localhost:5000/amigos')
+//todo       .then(response => response.json())
+//todo       .then(data => {
+//todo         for (let i = 0; i < data.length; i++) {
+//todo           lista.innerHTML += `<li>${data[i].name}</li>`;
+//todo         }
+//todo       })
+//todo       .catch(error => console.error('Error:', error));
+//todo   });
 
 //! Buscar amigo.
-//todo $('#search').click(function(){
-//todo     var id = $('#input').val()
-//todo     $.get(`http://localhost:5000/amigos/${id}`, response =>{
-//todo         $('#amigo').text(response.name)  //* getElementById('amigo').innerHTML = response.name
-//todo     })
-//todo })
+//  $('#search').click(function(){
+//      var id = $('#input').val()
+//      $.get(`http://localhost:5000/amigos/${id}`, response =>{
+//          $('#amigo').text(response.name)  //* getElementById('amigo').innerHTML = response.name
+//      })
+//  })
+
+//todo document.getElementById('search').addEventListener('click', () => {
+//todo     const id = document.getElementById('input').value;
+//todo     fetch(`http://localhost:5000/amigos/${id}`)
+//todo       .then(response => response.json())
+//todo       .then(data => {
+//todo         document.getElementById('amigo').innerHTML = data.name;
+//todo       })
+//todo       .catch(error => console.error('Error:', error));
+//todo   });
 
 $('#search').click(function(){
     let input = document.querySelector('#input')
@@ -42,3 +70,17 @@ $('#delete').click(()=>{
         }
     })
 })
+//todo document.getElementById('delete').addEventListener('click', () => {
+//todo     const id = document.getElementById('inputDelete').value;
+//todo     fetch(`http://localhost:5000/amigos/${id}`, {
+//todo       method: 'DELETE'
+//todo     })
+//todo       .then(response => {
+//todo         if (response.ok) {
+//todo           document.getElementById('success').innerHTML = `Amigo numero ${id} borrado con exito`;
+//todo         } else {
+//todo           throw new Error('Error al borrar amigo');
+//todo         }
+//todo       })
+//todo       .catch(error => console.error('Error:', error));
+//todo   });
