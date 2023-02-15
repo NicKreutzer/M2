@@ -1,33 +1,21 @@
-var traverseDomAndCollectElements = function(matchFunc, startEl) {
+var traverseDomAndCollectElements = function(matchFunc, startEl = document.body) {
   var resultSet = [];
 
-  if (typeof startEl === "undefined") {
-    startEl = document.body;
-  }
+  //? if (typeof startEl === "undefined") {  
+  //?   startEl = document.body;
+  //? }
+  //! Las 3 lineas de arriba se pasan por default arriba startEl=document.body
 
   // recorre el árbol del DOM y recolecta elementos que matchien en resultSet
   // usa matchFunc para identificar elementos que matchien
 
   // TU CÓDIGO AQUÍ
-// if(matchFunc(startEl)===true)resultSet.push(startEl);
-// for (let i = 0; i < startEl.children.length; i++) {
-//   let result = traverseDomAndCollectElements(matchFunc.startEl.children[i])
-//   resultSet = [...resultSet, ...result]; 
-// }
-// return resultSet;
-  let traverse = function (currentEl) {       
-    if (matchFunc(currentEl)) {  //! verifica si el elemento actual coincide con el criterio de búsqueda.
-      resultSet.push(currentEl);
-    }
-   //for (var i = 0; i < currentEl.children.length; i++) {   //! llama recursivamente a traverse para cada elemento hijo.
-   //  traverse(currentEl.children[i]);
-   //}
-    currentEl.children.forEach(function(childEl) {
-      traverse(childEl);
-    });
-  };
-  traverse(startEl);   //! comienza a recorrer el DOM desde el elemento inicial.
-  return resultSet;  //! devuelve el conjunto de resultados.
+if(matchFunc(startEl)) resultSet.push(startEl);
+for (let i = 0; i < startEl.children.length; i++) {
+    var result = traverseDomAndCollectElements(matchFunc, startEl.children[i])
+    resultSet = [...resultSet, ...result]
+}
+return resultSet;
 };
 
 // Detecta y devuelve el tipo de selector
@@ -41,18 +29,25 @@ var selectorTypeMatcher = function(selector) {
     //! if (/^#[a-zA-Z][\w-]*$/.test(selector)) {
     //!   return "id";
     //! }
+    //todo if(selector[0] === "#") return "id"
+
   } else if (selector.startsWith(".")) {
     return "class";
     //! else if (/^\.[a-zA-Z][\w-]*$/.test(selector)) {
     //!  return "class";
+    //todo if(selector[0] === ".") return "class"
+
   } else if (selector.includes(".")) {
     return "tag.class";
     //! else if (/^[a-zA-Z][\w-]*\.[a-zA-Z][\w-]*$/.test(selector)) {
     //! return "tag.class"
+    //todo for(let 1=0; i< selector.length; i++) return "tag.class"
+  
   } else {
     return "tag";
     //! else if (/^[a-zA-Z][\w-]*$/.test(selector)) {
     //!   return "tag";
+
     //! else{
     //! return "unknown"
     //! }
@@ -69,48 +64,37 @@ var matchFunctionMaker = function(selector) {
   var matchFunction;
 
   if (selectorType === "id") {
-    var idName = selector.slice(1);
-    matchFunction = function(el) {
-      return el.id === idName;
+    matchFunction = function(elemento) {
+      return "#" + elemento.id === selector;
     };
+
   } else if (selectorType === "class") {
-    var className = selector.slice(1);
-    matchFunction = function(el) {
-      return el.classList.contains(className);
+    matchFunction = function(elemento) {
+      for (let i = 0; i < elemento.classList.length; i++) {
+        if("." + elemento.classList[i] === selector) return true;
+      }
+      return false;
     };
+
   } else if (selectorType === "tag.class") {
-    var tagAndClassName = selector.split(".");
-    var tagName = tagAndClassName[0];
-    var className = tagAndClassName[1];
-    matchFunction = function(el) {
-      return el.tagName === tagName.toUpperCase() && el.classList.contains(className);
+    matchFunction = function(elemento) {
+      var [t, c] = selector.split(".")
+      return matchFunctionMaker(t)(elemento) && matchFunctionMaker("." + c)(elemento);
     };
-  } else {
-    matchFunction = function(el) {
-      return el.tagName === selector.toUpperCase();
+
+  } else if(selectorType === "tag"){
+    matchFunction = function(elemento) {
+      return elemento.tagName.toLowerCase() === selector.toLowerCase();
     };
   }
-
-  return matchFunction;
-  // var matchFunction = function (el) {
-  //   return el.tagName && (el.tagName.toLowerCase() === selector.toLowerCase());
-  // };
-  //! selectorType === "id" ? true : false;
-  //! selectorType === "class" ? true : false;
-  //! selectorType === "tag.class" ? true : false;
-  //! selectorType === "tag" ? true : false;
   return matchFunction;
 };
 
 var $ = function(selector) {
   var elements;
-  var selectorMatchFunc = matchFunctionMaker(selector);
+  var selectorMatchFunc = matchFunctionMaker(selector);  //* El resultado de una funcion.
   elements = traverseDomAndCollectElements(selectorMatchFunc);
   return elements;
 };
-// var $ = function(selector) {
-//   var elements;
-//   var selectorMatchFunc = matchFunctionMaker(selector);
-//   elements = traverseDomAndCollectElements(selectorMatchFunc, document.documentElement);
-//   return elements;
-// };
+
+//! $(`.myClass`) --> document.querySelectorAll(`.myclass`) div
