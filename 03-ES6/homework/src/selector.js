@@ -1,21 +1,27 @@
 var traverseDomAndCollectElements = function(matchFunc, startEl = document.body) {
   var resultSet = [];
 
-  //? if (typeof startEl === "undefined") {  
-  //?   startEl = document.body;
-  //? }
-  //! Las 3 lineas de arriba se pasan por default arriba --> startEl=document.body
+  //! if (typeof startEl === "undefined") {  
+  //!   startEl = document.body;
+  //! }
+  //todo Las 3 lineas de arriba se pasan por default arriba --> startEl=document.body
 
   // recorre el árbol del DOM y recolecta elementos que matchien en resultSet
   // usa matchFunc para identificar elementos que matchien
 
   // TU CÓDIGO AQUÍ
 if(matchFunc(startEl)) resultSet.push(startEl);
-for (let i = 0; i < startEl.children.length; i++) {
-    var result = traverseDomAndCollectElements(matchFunc, startEl.children[i])
-    resultSet = [...resultSet, ...result]
+//* startEl.children = [div, div, h1, h2]
+for (const child of startEl.children) {
+  let newElements = traverseDomAndCollectElements(matchFunc, child);
+  resultSet = [...resultSet, ...newElements]
 }
 return resultSet;
+//! for (let i = 0; i < startEl.children.length; i++) {
+//!     var result = traverseDomAndCollectElements(matchFunc, startEl.children[i])
+//!     resultSet = [...resultSet, ...result]
+//! }
+//! return resultSet;
 };
 
 //? 1  recorrer el arbol (DOM):traverseDomCollectElements
