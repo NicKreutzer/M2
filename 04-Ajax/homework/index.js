@@ -5,15 +5,24 @@
 
 
 //! Boton ver amigos.
-$('#boton').click(function(){
-        var lista = $('#lista')
-        lista.empty()
-    $.get('http://localhost:5000/amigos', response => {
-        for (let i = 0; i < response.length; i++) {
-            lista.append(`<li>${response[i].name}</li>`) 
-        }
-    })
-});
+let getAmigos =  () => {
+    var lista = $('#lista')
+    lista.empty()
+$.get('http://localhost:5000/amigos', response => {
+    for (let i = 0; i < response.length; i++) {
+        lista.append(`<li>${response[i].name}</li>`) 
+    }
+})
+}
+$('#boton').click(getAmigos)//(function(){
+    //     var lista = $('#lista')
+    //     lista.empty()
+    // $.get('http://localhost:5000/amigos', response => {
+    //     for (let i = 0; i < response.length; i++) {
+    //         lista.append(`<li>${response[i].name}</li>`) 
+    //     }
+    // })
+//});
 //todo document.getElementById('boton').addEventListener('click', () => {
 //todo     const lista = document.getElementById('lista');
 //todo     lista.innerHTML = '';
@@ -66,7 +75,8 @@ $('#delete').click(()=>{
         url: `http://localhost:5000/amigos/${id}`,
         type: "DELETE",
         success: ()=> {
-            $('#success').text(`Amigo numero ${id} borrado con exito`)
+            $('#success').text(`Amigo numero ${id} borrado con exito`), 
+            getAmigos()
         }
     })
 })
