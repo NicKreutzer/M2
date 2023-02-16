@@ -72,21 +72,22 @@ $('#boton').click(getAmigos)
 
 $('#search').click(function(){
     let input = document.querySelector('#input')
-    if(!input.value){
+    if(!input.value || input.value != `${'#id'}`){
         let mensaje = document.querySelector('#amigo')
-        mensaje.innerText = "Ingrese el numero de id"
+        mensaje.innerText = "Ingrese un numero de id de la lista"
+        return;
     }
     $.get("http://localhost:5000/amigos/" + input.value, function (data){
         console.log(data);
         let span = document.querySelector('#amigo');
         span.textContent = data.name
-        //input.value = "";
+        input.value = "";
     })
 })
 
 //! Delete amigo.
 $('#delete').click(()=>{
-    var id = $('#inputDelete').val()
+    let id = $('#inputDelete').val()
     $.ajax({
         url: `http://localhost:5000/amigos/${id}`,
         type: "DELETE",
