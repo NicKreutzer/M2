@@ -135,3 +135,4 @@ var $ = function(selector) {
 
 //! $(`.myClass`) --> document.querySelectorAll(`.myclass`) div
 //? ESTO      es igual a            ESTO
+
