@@ -8,21 +8,37 @@
 let getAmigos =  () => {
     var lista = $('#lista')
     lista.empty()
-$.get('http://localhost:5000/amigos', response => {
-    for (let i = 0; i < response.length; i++) {
-        lista.append(`<li>${response[i].name}</li>`) 
-    }
-})
+    $.get('http://localhost:5000/amigos', response => {
+        for (let i = 0; i < response.length; i++) {
+            lista.append(`<li>${response[i].name}</li>`)
+            img.hide() 
+        }
+    })
 }
-$('#boton').click(getAmigos)//(function(){
-    //     var lista = $('#lista')
-    //     lista.empty()
-    // $.get('http://localhost:5000/amigos', response => {
-    //     for (let i = 0; i < response.length; i++) {
-    //         lista.append(`<li>${response[i].name}</li>`) 
-    //     }
-    // })
-//});
+let img = $('img')
+$('#boton').click(getAmigos)
+                            //*(function(){
+//*     var lista = $('#lista')
+//*     lista.empty()
+//* $.get('http://localhost:5000/amigos', response => {
+//*     for (let i = 0; i < response.length; i++) {
+//*         lista.append(`<li>${response[i].name}</li>`) 
+//*     }
+//* })
+//*});
+//? let img = $('img')
+//? img.hide()
+//? $('#boton').click(()=>{
+//?     img.show()
+//?     $.get('http://localhost:5000/amigos', (data)=>{
+//?         let lista = ('#lista')
+//?         lista.empty()
+//?         data.map((item)=>{
+//?             lista.append(`<li>${item.name}</li>`)
+//?         })
+//?         img.hide()
+//?     })
+//? })
 //todo document.getElementById('boton').addEventListener('click', () => {
 //todo     const lista = document.getElementById('lista');
 //todo     lista.innerHTML = '';
@@ -38,7 +54,7 @@ $('#boton').click(getAmigos)//(function(){
 
 //! Buscar amigo.
 //*  $('#search').click(function(){
-//*      var id = $('#input').val()
+//*      let id = $('#input').val()
 //*      $.get(`http://localhost:5000/amigos/${id}`, response =>{
 //*          $('#amigo').text(response.name)  //* getElementById('amigo').innerHTML = response.name
 //*      })
