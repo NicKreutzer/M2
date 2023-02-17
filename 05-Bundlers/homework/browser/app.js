@@ -3,7 +3,7 @@
   //* var socket = window.io(window.location.origin);
 const whiteboard = require('./whiteboard');
 const io = require('socket.io-client');
-let socket = io(window.location.origin);
+const socket = io(window.location.origin);
 
   socket.on('connect', function () {
     console.log('Connected!');
