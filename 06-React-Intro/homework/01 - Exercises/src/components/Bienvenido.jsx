@@ -4,7 +4,7 @@ const studentName = "Nicolas Exequiel Kreutzer.";
 const techSkills = ["Html", "Css", "JavaScript", "React", "Redux"];
 const alerts = { m1: "Aprobado", m2: "En curso" };
 
-
+import Botones from './Botones';
 
 export default function Bienvenido() {
  
@@ -19,6 +19,7 @@ export default function Bienvenido() {
           <li key={index}>{skill}</li>        /*Con su contenido correspondiente y clave unica definida por el indice del elemento en el array */
         ))}</ul>                           
       </fieldset>
+      <Botones alerts={alerts} />
     </div>
   )
 }
