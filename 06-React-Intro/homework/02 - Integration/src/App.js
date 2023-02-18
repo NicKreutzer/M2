@@ -8,6 +8,12 @@ function App () {
   return (
     <div className='App' style={{ padding: '25px' }}>
       <div>
+        <SearchBar
+          onSearch={(characterID) => window.alert(characterID)}
+        />
+      </div>
+      <br></br>
+      <div>
         <Card
           name={Rick.name}
           species={Rick.species}

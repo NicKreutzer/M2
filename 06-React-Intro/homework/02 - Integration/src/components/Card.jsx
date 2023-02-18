@@ -4,13 +4,13 @@ export default function Card({name, species, gender, image, onClose}) {
    return (
       
          <div>
-            {/* <fieldset>  */}
+            <fieldset> 
             <button onClick={onClose}>X</button>
             <h1><strong>Name: {name}</strong></h1>
             <h2>Species: {species}</h2>
             <h3>Gender: {gender}</h3>
             <img  src={image} alt={name} />
-            {/* </fieldset>  */}
+            </fieldset> 
          </div>
       
    );
