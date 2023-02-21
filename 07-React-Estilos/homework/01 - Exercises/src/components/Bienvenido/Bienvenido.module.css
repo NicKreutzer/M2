@@ -33,11 +33,11 @@
 
 .listItem {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 15vw;
-  height: 15vh;
+  width: 10vw;
+  height: 10vw;
   background-color: #fcff4f;
   padding: 1em;
   margin: 5px;
