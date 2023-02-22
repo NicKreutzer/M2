@@ -9,7 +9,7 @@ align-items: center;
 `
 const Buttons = styled.button`
 border-radius: 5px;
-margin: 5px;
+margin: 10px;
 padding: 5px;
 cursor: pointer;
 &:hover{
