@@ -14,7 +14,10 @@ const alerts = { m1: 'Aprobado', m2: 'En curso' }
 export default function Bienvenido () {
   return (
     <div className={styles.divBienvenido}>
-      <h1 className={styles.title}>Soy Henry!</h1>
+
+      <h1 className={styles.title} style={{color:"red"}}>Soy Henry!</h1>
+      {/* Asi se pisa el color con inline styling. */}
+      
       <h3 className={styles.subtitle}>{studentName}</h3>
       <ul className={styles.unorderedList}>
         {techSkills.map(skill => (
