@@ -54,7 +54,7 @@ export default function Zoo() {
 
    return (
       <div>
-         <label>Zoo Name: </label>
+         <label>Zoo Name:</label>
          <input value= {zoo.zooName} onChange={handleInpuntChange}></input>
          <h1>{zoo.zooName}</h1>
 
