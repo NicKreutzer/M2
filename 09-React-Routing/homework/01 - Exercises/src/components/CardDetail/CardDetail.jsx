@@ -9,7 +9,7 @@ export default function CardDetail() {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const backToHome= () => navigate("/")
+  const backToHome= () => {navigate("/")};
 
   React.useEffect(() => {
     //eslint-disable-next-line

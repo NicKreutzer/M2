@@ -27,9 +27,7 @@ export default function NavBar() {
             </NavLink>
           </li>
           <li>
-
-            <NavLink to="/promotions">
-
+            <NavLink className={({isActive})=> isActive ? styleNav.active : styleNav.disable} to="/promotions">
             <span>Promociones</span>
             </NavLink>
           </li>
