@@ -58,6 +58,9 @@
    },
    "jest": {
       "testEnvironment": "jsdom",
+      "roots" : [
+         "<rootDir>/"
+      ],
       "modulePaths": [],
       "setupFilesAfterEnv": [
          "<rootDir>/package.json"

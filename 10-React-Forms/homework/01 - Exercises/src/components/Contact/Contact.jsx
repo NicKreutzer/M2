@@ -4,22 +4,19 @@ import './Contact.modules.css'
 // eslint-disable-next-line
 const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
-export function validate(objetoInputs){
+export function validate(inputs){
   
   const errors={};
 
-  if (!objetoInputs.name) {
-    errors.name = 'Se requiere un nombre.'
+  if (!inputs.name) {
+    errors.name = 'Se requiere un nombre';
     }
-  else if (objetoInputs.name.length < 15) 
-    errors.name = "Debe ingresar nombre completo."
-
-  if (!regexEmail.test(objetoInputs.email))
-    errors.email = 'Debe ser un correo electrónico.'
-    
-  if(!objetoInputs.message)
-    errors.message = "Se requiere un mensaje."
-    
+  if (!regexEmail.test(inputs.email)){
+    errors.email = 'Debe ser un correo electrónico';
+    }
+  if(!inputs.message){
+    errors.message = "Se requiere un mensaje";
+    }
   return errors;
 };
 
@@ -40,8 +37,9 @@ export default function Contact () {
 
   const handleChange =  (event) => {
     console.log(inputs);
-    setInputs ({...inputs, [event.target.name] : event.target.value});
-    setErrors (validate({...inputs,[event.target.name] : event.target.value}));
+    const {name, value} = event.target
+    setInputs ({...inputs, [name]:value});
+    setErrors (validate({...inputs,[name]:value}));
   };
 
   function handleSubmit(event){
@@ -73,7 +71,7 @@ export default function Contact () {
         placeholder="Escribe tu nombre..." 
         type= "text"
         onChange={handleChange}
-        className={errors.name && 'warning'}
+        className={errors.name ? 'warning' : null}
         >
         </input>
         <p className='danger'>{errors.name}</p>
@@ -84,7 +82,7 @@ export default function Contact () {
         placeholder='Escribe tu email...' 
         type= "text"
         onChange={handleChange}
-        className={errors.email && 'warning'}
+        className={errors.email ? 'warning' : null}
         > 
         </input>
         <p className='danger'>{errors.email}</p>
@@ -95,14 +93,14 @@ export default function Contact () {
         placeholder="Escribe tu mensaje..." 
         type= "text"
         onChange={handleChange}
-        className={errors.message && 'warning'}
+        className={errors.message ? 'warning' : null}
         >
         </textarea>
         <p className='danger'>{errors.message}</p>
       <button 
       type="submit"
       // disabled={Object.entries(errors).length === 0 ? false : true}
-      >Enviar </button>
+      >Enviar</button>
     </form>
     Crear Formulario
   </div>)
