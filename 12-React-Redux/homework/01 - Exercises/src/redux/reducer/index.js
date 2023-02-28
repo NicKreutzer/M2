@@ -1,8 +1,21 @@
-// const initialState = {
-//    list: [],
-//    storeName: ""
-// };
+import {ADD_PRODUCT, 
+    DELETE_PRODUCT, 
+    GET_STORE_NAME} from './types'
 
-// const rootReducer = () => {};
+const initialState = {
+   list: [],
+   storeName: ""
+};
 
-// export default rootReducer;
+const rootReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case ADD_PRODUCT:
+            
+            break;
+    
+        default:
+            break;
+    }
+};
+
+export default rootReducer;
