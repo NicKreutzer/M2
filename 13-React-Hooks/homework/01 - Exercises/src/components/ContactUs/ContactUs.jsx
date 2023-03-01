@@ -1,6 +1,10 @@
 import React from "react";
+import {useDispatch} from "react-redux";
+import { enviarForm } from "../../redux/actions/actions";
 
 const ContactUs = () => {
+
+  const dispatch = useDispatch();
 
   const [form, setForm] = React.useState({
     nombre: "",
@@ -13,16 +17,22 @@ const ContactUs = () => {
     setForm({
       ...form,
       [event.target.name] : event.target.value,
-      [event.target.email] : event.target.value,
-      [event.target.asunto] : event.target.value,
-      [event.target.mensaje] : event.target.value
     })
-  }
+  };
 
+  const handleSubmit = () => {
+    dispatch(enviarForm(form))
+    setForm({
+      nombre: "",
+      email: "",
+      asunto: "",
+      mensaje: "",
+    })
+  };
 
   return (
     <div>
-      <form className="contactBg">
+      <form className="contactBg" onSubmit= {handleSubmit}>
         <label htmlFor="nombre">Nombre: </label>
         <input onChange={handleInput} name="nombre" value= {form.nombre}/>
         <label htmlFor="email" >Email: </label>
@@ -31,7 +41,7 @@ const ContactUs = () => {
         <input onChange={handleInput} name="asunto" value= {form.asunto}/>
         <label htmlFor="mensaje" >Mensaje: </label>
         <input onChange={handleInput} name="mensaje" value= {form.mensaje}/>
-        <button>Enviar</button>
+        <button type= "submit">Enviar</button>
       </form>
     </div>
   );
