@@ -18,7 +18,7 @@ const InfoEnviada = () => {
 
    return (
       <div>
-         <h1>Información que enviaste por el formulario....</h1>
+         <h1>ESTA ES LA INFORMACIÓN QUE ENVIASTE...</h1>
          <h3>{informacion.nombre}</h3>
          <h3>{informacion.email}</h3>
          <h3>{informacion.asunto}</h3>

@@ -41,7 +41,7 @@ const ContactUs = () => {
         <input onChange={handleInput} name="asunto" value= {form.asunto}/>
         <label htmlFor="mensaje" >Mensaje: </label>
         <input onChange={handleInput} name="mensaje" value= {form.mensaje}/>
-        <button type= "submit">Enviar</button>
+        <button type= "submit" onClick={handleSubmit}>Enviar</button>
       </form>
     </div>
   );
